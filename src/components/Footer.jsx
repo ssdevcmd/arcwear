@@ -6,7 +6,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const Footer = () =>  {
   return (
-    <footer className="relative bg-black text-white font-mono border-t border-zinc-900 pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-slate-950/90 backdrop-blur text-white font-mono border-t border-zinc-900 pt-16 pb-12 overflow-hidden">
       {/* Background Watermark Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
         <span className="text-[180px] md:text-[260px] font-black uppercase tracking-tighter text-white">
