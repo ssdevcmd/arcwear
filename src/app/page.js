@@ -1,8 +1,10 @@
 "use client";
 
+import Features from "@/components/Features";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Newsletter from "@/components/Newsletter";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import Image from "next/image";
@@ -66,6 +68,7 @@ export default function Home() {
         removeFromCart={removeFromCart} 
         />
       <Hero />
+      <Features />
 
 
       <section
@@ -87,6 +90,7 @@ export default function Home() {
         </div>
 
       </section>
+      <Newsletter />
       <Footer />
     </main>
   );

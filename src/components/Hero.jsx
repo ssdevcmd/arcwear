@@ -23,7 +23,7 @@ const Hero = () => {
                 </p>
 
                 <Link
-                    href="/shop"
+                    href="#shop"
                     className="mt-8 inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 px-6 py-3 rounded-xl font-semibold transition"
                 >
                     Shop Now

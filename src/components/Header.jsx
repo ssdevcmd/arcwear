@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import Link from "next/link";
-import { ChevronDown, Heart, Minus, Plus, Search, ShoppingBag, Trash2 } from "lucide-react";
+import { ChevronDown, Heart, Menu, Minus, Plus, Search, ShoppingBag, Trash2 } from "lucide-react";
 import Image from 'next/image';
 
-const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
-   const [open, setOpen] = useState(false);
+const Header = ({ cart, increaseQuantity, decreaseQuantity, removeFromCart }) => {
+  const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cart.reduce(
@@ -14,20 +15,20 @@ const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
     0
   );
 
-    return (
-        <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+  return (
+    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4 relative">
 
         <div>
-          <h1 className="text-2xl font-black tracking-wide bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+          <h1 className="text-xl sm:text-2xl font-black tracking-wide bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
             ARCWEAR
           </h1>
-          <p className="text-xs text-slate-500 uppercase">
+          <p className="text-[10px] sm:text-xs text-slate-500 uppercase">
             Wear Your Arc
           </p>
         </div>
 
-        <nav className="flex gap-6 items-center">
+        <nav className="hidden lg:flex gap-6 items-center">
           <Link href="#shop" className="hover:text-emerald-400 transition">
             SHOP
           </Link>
@@ -47,8 +48,18 @@ const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
             MORE <ChevronDown className="w-3.5 h-3.5" />
           </button>
 
-          {/* Right Icon Actions */}
-        
+
+        </nav>
+
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="lg:hidden text-zinc-300 hover:text-emerald-400 transition"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+
+        {/* Right Icon Actions */}
+        <div className="flex items-center gap-3 sm:gap-4">
           <button className="text-zinc-300 hover:text-emerald-400 transition" aria-label="Search">
             <Search className="w-5 h-5" />
           </button>
@@ -59,10 +70,10 @@ const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
 
           {/* cart button */}
           <button
-            onClick={() => setOpen((prev)=> !prev)}
+            onClick={() => setOpen((prev) => !prev)}
             className="relative p-2 border border-slate-700 rounded-lg hover:border-emerald-500 transition"
           >
-            <ShoppingBag className="w-5 h-5"/>
+            <ShoppingBag className="w-5 h-5" />
 
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-emerald-500 text-black text-xs rounded-full px-2">
@@ -71,7 +82,7 @@ const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
             )}
           </button>
 
-           {/* Cart Dropdown */}
+          {/* Cart Dropdown */}
           {open && (
             <div className="absolute right-0 top-14 w-80 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl p-4">
               <h3 className="font-bold mb-3">Your Cart</h3>
@@ -155,11 +166,21 @@ const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
               )}
             </div>
           )}
-        </nav>
-
+        </div>
       </div>
+
+      {menuOpen && (
+        <div className="absolute top-full left-0 w-full bg-slate-700 border-t border-slate-800 lg:hidden">
+          <div className="flex flex-col text-center p-4 gap-4 hover:text-emerald-400">
+            <Link href="#shop">SHOP</Link>
+            <Link href="#collection">COLLECTION</Link>
+            <Link href="#lookbook">LOOKBOOK</Link>
+            <Link href="#story">OUR STORY</Link>
+          </div>
+        </div>
+      )}
     </header>
-    );
+  );
 };
 
 export default Header;

@@ -10,7 +10,7 @@ const ProductCard = ({ product, addToCart }) => {
 
             <div className="relative aspect-[4/5] w-full">
                 <Image
-                    src="/products/blue-flame.jpg"
+                    src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover"

@@ -22,13 +22,13 @@ const Footer = () =>  {
             AW
           </div>
 
-          <p className="text-zinc-400 text-xs leading-relaxed max-w-sm">
+          <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
             Wear the Arc. Anime-inspired streetwear for gamers and otaku. Every drop limited. No restocks. Ever.
           </p>
 
           <div className="space-y-2">
-            <span className="text-[10px] uppercase text-zinc-500 tracking-widest block font-bold">
-              FOLLOW THE LORE
+            <span className="text-[10px] uppercase text-slate-500 tracking-widest block font-bold">
+              FOLLOW THE MORE
             </span>
             <div className="flex flex-wrap gap-3 pt-1">
               <a
@@ -61,10 +61,10 @@ const Footer = () =>  {
 
         {/* Directory Column 1: SHOP */}
         <div>
-          <h4 className="text-xs uppercase text-zinc-400 tracking-widest font-bold mb-5">
+          <h4 className="text-xs uppercase text-slate-400 tracking-widest font-bold mb-5">
             SHOP
           </h4>
-          <ul className="space-y-3 text-xs font-semibold text-zinc-300">
+          <ul className="space-y-3 text-xs font-semibold text-slate-300">
             <li><Link href="/" className="hover:text-emerald-400 transition">Home</Link></li>
             <li><Link href="#shop" className="hover:text-emerald-400 transition">Drop</Link></li>
             <li><Link href="#collection" className="hover:text-emerald-400 transition">Collection</Link></li>
@@ -73,10 +73,10 @@ const Footer = () =>  {
 
         {/* Directory Column 2: HELP */}
         <div>
-          <h4 className="text-xs uppercase text-zinc-400 tracking-widest font-bold mb-5">
+          <h4 className="text-xs uppercase text-slate-400 tracking-widest font-bold mb-5">
             HELP
           </h4>
-          <ul className="space-y-3 text-xs font-semibold text-zinc-300">
+          <ul className="space-y-3 text-xs font-semibold text-slate-300">
             <li><Link href="#faq" className="hover:text-emerald-400 transition">FAQ</Link></li>
             <li><Link href="#returns" className="hover:text-emerald-400 transition">Return Policy</Link></li>
             <li><Link href="#contact" className="hover:text-emerald-400 transition">Contact Us</Link></li>
@@ -85,7 +85,7 @@ const Footer = () =>  {
 
         {/* Directory Column 3: ABOUT */}
         <div>
-          <h4 className="text-xs uppercase text-zinc-400 tracking-widest font-bold mb-5">
+          <h4 className="text-xs uppercase text-slate-400 tracking-widest font-bold mb-5">
             ABOUT
           </h4>
           <ul className="space-y-3 text-xs font-semibold text-zinc-300">
