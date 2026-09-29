@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from "next/link";
-import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { ChevronDown, Heart, Minus, Plus, Search, ShoppingBag, Trash2 } from "lucide-react";
 import Image from 'next/image';
 
 const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
@@ -28,9 +28,34 @@ const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
         </div>
 
         <nav className="flex gap-6 items-center">
-          <Link href="/shop" className="hover:text-emerald-400">
-            Shop
+          <Link href="#shop" className="hover:text-emerald-400 transition">
+            SHOP
           </Link>
+          <Link href="#shop" className="hover:text-emerald-400 transition">
+            DROP
+          </Link>
+          <Link href="#collection" className="hover:text-emerald-400 transition">
+            COLLECTION
+          </Link>
+          <Link href="#lookbook" className="hover:text-emerald-400 transition">
+            LOOKBOOK
+          </Link>
+          <Link href="#story" className="hover:text-emerald-400 transition">
+            OUR STORY
+          </Link>
+          <button className="flex items-center gap-1 hover:text-emerald-400 transition uppercase">
+            MORE <ChevronDown className="w-3.5 h-3.5" />
+          </button>
+
+          {/* Right Icon Actions */}
+        
+          <button className="text-zinc-300 hover:text-emerald-400 transition" aria-label="Search">
+            <Search className="w-5 h-5" />
+          </button>
+
+          <button className="text-zinc-300 hover:text-emerald-400 transition" aria-label="Wishlist">
+            <Heart className="w-5 h-5" />
+          </button>
 
           {/* cart button */}
           <button
