@@ -1,15 +1,35 @@
+"use client";
+
+import Cart from "@/components/Cart";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
 import Image from "next/image";
+import { useMemo, useState } from "react";
 
 export default function Home() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product, size) => {
+    setCart((prev) => {
+      const existing = prev.find((i) => i.id === product.id && i.size === size);
+      if (existing) {
+        return prev.map((i) =>
+          i.id === product.id && i.size === size
+            ? { ...i, quantity: i.quantity + 1 }
+            : i
+        );
+      }
+      return [...prev, { ...product, size, quantity: 1 }];
+    });
+  };
+
   return (
     <main>
 
-      <Header cartCount={0} />
+      <Header cart={cart} />
       <Hero />
 
       <section
@@ -25,13 +45,16 @@ export default function Home() {
             <ProductCard
               key={product.id}
               product={product}
-              addToCart={() => { }}
+              addToCart={addToCart}
             />
           ))}
         </div>
+
       </section>
 
       <Footer />
     </main>
   );
 }
+
+
