@@ -1,6 +1,5 @@
 "use client";
 
-import Cart from "@/components/Cart";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -12,6 +11,7 @@ import { useMemo, useState } from "react";
 export default function Home() {
   const [cart, setCart] = useState([]);
 
+  // 1. Add item or increment quantity if item + size already exists
   const addToCart = (product, size) => {
     setCart((prev) => {
       const existing = prev.find((i) => i.id === product.id && i.size === size);
@@ -26,11 +26,47 @@ export default function Home() {
     });
   };
 
+  // 2. Increase quantity (+1)
+  const increaseQuantity = (id, size) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id && item.size === size
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  // 3. Decrease quantity (-1, and auto-remove if quantity reaches 0)
+  const decreaseQuantity = (id, size) => {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === id && item.size === size
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  // 4. Remove item completely
+  const removeFromCart = (id, size) => {
+    setCart((prev) =>
+      prev.filter((item) => !(item.id === id && item.size === size))
+    );
+  };
+
   return (
     <main>
 
-      <Header cart={cart} />
+      <Header cart={cart}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        removeFromCart={removeFromCart} 
+        />
       <Hero />
+
 
       <section
         id="shop"
@@ -51,7 +87,6 @@ export default function Home() {
         </div>
 
       </section>
-
       <Footer />
     </main>
   );

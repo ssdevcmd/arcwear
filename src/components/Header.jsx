@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import Link from "next/link";
-import { ShoppingBag } from "lucide-react";
+import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import Image from 'next/image';
 
-const Header = ({cart}) => {
+const Header = ({cart, increaseQuantity, decreaseQuantity, removeFromCart}) => {
    const [open, setOpen] = useState(false);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -33,7 +34,7 @@ const Header = ({cart}) => {
 
           {/* cart button */}
           <button
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen((prev)=> !prev)}
             className="relative p-2 border border-slate-700 rounded-lg hover:border-emerald-500 transition"
           >
             <ShoppingBag className="w-5 h-5"/>
@@ -73,21 +74,55 @@ const Header = ({cart}) => {
                           <p className="text-xs text-slate-400">
                             Size: {item.size}
                           </p>
-                          <p className="text-xs text-slate-400">
-                            Qty: {item.quantity}
-                          </p>
+
+                          {/* Dynamic Quantity Controls */}
+                          <div className="flex items-center gap-2 mt-2">
+                            <button
+                              type="button"
+                              onClick={() => decreaseQuantity(item.id, item.size)}
+                              className="w-6 h-6 flex items-center justify-center rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+                              title="Decrease quantity"
+                            >
+                              <Minus className="w-3 h-3" />
+                            </button>
+
+                            <span className="text-xs font-bold px-1">
+                              {item.quantity}
+                            </span>
+
+                            <button
+                              type="button"
+                              onClick={() => increaseQuantity(item.id, item.size)}
+                              className="w-6 h-6 flex items-center justify-center rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+                              title="Increase quantity"
+                            >
+                              <Plus className="w-3 h-3" />
+                            </button>
+                          </div>
                         </div>
 
-                        <span className="text-emerald-400 font-semibold text-sm">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </span>
+                        {/* Price & Remove Button */}
+                        <div className="flex flex-col items-end gap-2">
+                          <span className="text-emerald-400 font-semibold text-sm">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => removeFromCart(item.id, item.size)}
+                            className="text-slate-500 hover:text-red-400 transition"
+                            title="Remove item"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
                     ))}
                   </div>
 
+                  {/* Subtotal Display */}
                   <div className="flex justify-between items-center mt-4 pt-3 border-t border-slate-800">
-                    <span className="font-semibold">Subtotal</span>
-                    <span className="text-emerald-400 font-bold">
+                    <span className="font-semibold text-sm">Subtotal</span>
+                    <span className="text-emerald-400 font-bold text-base">
                       ${subtotal.toFixed(2)}
                     </span>
                   </div>
